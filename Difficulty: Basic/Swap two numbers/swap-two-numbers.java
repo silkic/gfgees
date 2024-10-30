@@ -27,12 +27,9 @@ class Solution{
     static List<Integer> get(int a,int b)
     {
         // code here
-      b = a^b;
-      a =a^b;
-      b = a^b;
-      ArrayList<Integer> arr = new ArrayList<Integer>();
-      arr.add(a);
-      arr.add(b);
-      return arr;
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(b);
+        list.add(a);
+        return list;
     }
 }
