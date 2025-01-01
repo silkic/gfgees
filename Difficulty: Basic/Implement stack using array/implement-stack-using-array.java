@@ -30,7 +30,9 @@ public class Main {
                 }
             }
             System.out.println();
-        }
+        
+System.out.println("~");
+}
         scanner.close();
     }
 }
@@ -49,19 +51,15 @@ class MyStack {
 
     public void push(int x) {
         // Your Code
-        if(top < arr.length){
-            top = top + 1;
-            arr[top] = x;
-        }
+        top = top + 1;
+        arr[top] = x;
     }
 
     public int pop() {
         // Your Code
-        if(top > -1){
-            int temp = arr[top];
-            top = top -1;
-            return temp;
+        if(top == -1){
+            return top;
         }
-         return -1;
+    return arr[top--];
     }
 }
