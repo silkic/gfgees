@@ -17,6 +17,8 @@ class GFG {
             } else {
                 System.out.println("false");
             }
+
+            System.out.println("~");
         }
     }
 }
@@ -27,18 +29,14 @@ class GFG {
 class Solution {
     static boolean armstrongNumber(int n) {
         // code here
-        String str = Integer.toString(n);
-        int org = n;
+        int orig = n;
         int sum = 0;
-        for(int i = 0;i < str.length();i++){
+        while(n > 0){
             int rem = n % 10;
             int cube = rem*rem*rem;
             sum += cube;
             n /= 10;
         }
-        if(sum == org){
-            return true;
-        }
-        return false;
+        return sum == orig;
     }
 }
