@@ -32,22 +32,24 @@ class GFG
 
 class Solution
 {
-     public int[] common_digits(int[] nums)
+    public int[] common_digits(int[] nums)
     {
-        ArrayList<Integer> temp = new ArrayList<Integer>();
-        for(int n:nums){
-            while(n!=0){
-                int t = n%10;
-                if(!temp.contains(t))
-                    temp.add(t);
-                n/=10;
+        // code here
+        HashSet<Integer> set = new HashSet();
+        for(int n : nums)
+        {
+            n = Math.abs(n);
+            while(n > 0){
+                set.add(n % 10);
+                n /= 10;
             }
         }
-        Collections.sort(temp);
-        int[] arr = new int[temp.size()];
-        for(int i=0;i<temp.size();i++)
-            arr[i]=temp.get(i);
+        int[] arr = new int[set.size()];
+        int i = 0;
+        for(int s : set){
+            arr[i++] = s;
+        }
+        Arrays.sort(arr);
         return arr;
     }
 }
-
