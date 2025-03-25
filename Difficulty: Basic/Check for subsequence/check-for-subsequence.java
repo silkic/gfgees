@@ -21,7 +21,9 @@ class GfG
             else
             System.out.println(0);
  		
-        }
+        
+System.out.println("~");
+}
     }
 }
 
@@ -33,21 +35,14 @@ class GfG
 
 class Solution{
     boolean isSubSequence(String A, String B){
-      int i = 0,j =0 ;
-      while(i < A.length() && j < B.length()){
-          if(Character.valueOf(A.charAt(i)).equals(Character.valueOf(B.charAt(j)))){
-            i++;
+        int i = 0;
+        int j = 0;
+        while(i < A.length() && j < B.length()){
+            if(A.charAt(i) == B.charAt(j)){
+                i++;
+            }
             j++;
-          }
-          else{
-            j++;
-          }
-      }
-      if( i == A.length()){
-          return true;
-      }
-      else{
-          return false;
-      }
+        }
+        return i == A.length();
     }
 }
