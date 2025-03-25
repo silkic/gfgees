@@ -1,18 +1,37 @@
 //{ Driver Code Starts
+import java.io.*;
 import java.util.*;
 
-class ExtraElement {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
         while (t-- > 0) {
-            int n = sc.nextInt();
-            int[] a = new int[n];
-            int[] b = new int[n - 1];
-            for (int i = 0; i < n; i++) a[i] = sc.nextInt();
-            for (int i = 0; i < n - 1; i++) b[i] = sc.nextInt();
-            Solution g = new Solution();
-            System.out.println(g.findExtra(n, a, b));
+
+            // Read first array from the first line of input
+            String line1 = br.readLine();
+            String[] tokens1 = line1.split(" ");
+            int[] arr1 = new int[tokens1.length];
+            for (int i = 0; i < tokens1.length; i++) {
+                arr1[i] = Integer.parseInt(tokens1[i]);
+            }
+
+            // Read second array from the next line of input
+            String line2 = br.readLine();
+            String[] tokens2 = line2.split(" ");
+            int[] arr2 = new int[tokens2.length];
+            for (int i = 0; i < tokens2.length; i++) {
+                arr2[i] = Integer.parseInt(tokens2[i]);
+            }
+
+            // Create Solution object and call the function with arr1 and arr2
+            Solution ob = new Solution();
+            int result = ob.findExtra(arr1, arr2);
+
+            // Print the result
+            System.out.println(result);
+            System.out.println("~");
         }
     }
 }
@@ -21,21 +40,16 @@ class ExtraElement {
 
 /*Complete the function below*/
 class Solution {
-    public int findExtra(int n, int arr1[], int arr2[]) {
+    public int findExtra(int a[], int b[]) {
         // add code here.
-       int low = 0;
-       int high = arr2.length-1;
-       int ans = n-1;
-       while(low <= high){
-           int mid = (low + high) / 2;
-           if(arr1[mid] != arr2[mid]){
-               ans = mid;
-               high = mid-1;
-           }
-           else{
-               low= mid+1;
-           }
-       }
-       return ans;
+        int ind = 0;
+        int i = 0; 
+        while(i < b.length){
+            if(a[i] != b[i]){
+                return i;
+            }
+            i++;
+        }
+        return a.length-1;
     }
 }
