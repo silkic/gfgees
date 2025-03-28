@@ -22,14 +22,15 @@ class GFG {
     }
 
     public static void main(String args[]) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
         while (t > 0) {
-            int n = sc.nextInt();
-            Node head = new Node(sc.nextInt());
+            String str[] = read.readLine().trim().split(" ");
+            int n = str.length;
+            Node head = new Node(Integer.parseInt(str[0]));
             Node tail = head;
-            for (int i = 0; i < n - 1; i++) {
-                tail.next = new Node(sc.nextInt());
+            for (int i = 1; i < n; i++) {
+                tail.next = new Node(Integer.parseInt(str[i]));
                 tail = tail.next;
             }
             Solution g = new Solution();
@@ -37,7 +38,9 @@ class GFG {
             System.out.println(ans);
             // printList(head);
             t--;
-        }
+        
+System.out.println("~");
+}
     }
 }
 
@@ -54,18 +57,20 @@ class GFG {
 
 class Solution {
     int getMiddle(Node head) {
-        ArrayList<Integer> list = new ArrayList<>();
-        Node temp = head;
-        while(temp != null){
-            list.add(temp.data);
-            temp = temp.next;
+        // Your code here.
+        Node slow = head;
+        Node fast = head;
+        int ans = 0;
+        while(fast.next != null && fast.next.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(fast.next == null){
+                ans = slow.data;
+            }
+            else if(fast.next.next == null){
+                ans = slow.next.data;
+            }
         }
-        if(list.size()/2 == 0){
-            int s = ((list.size()/2)+1);
-            return list.get(s-1);
-        }
-        else{
-            return list.get(list.size()/2);
-        }
+        return ans;
     }
 }
